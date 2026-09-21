@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#FFF9EE">
+  <meta name="description" content="Una pequeña sorpresa por el Día de las Flores Amarillas.">
+  <title>Para ti 💛</title>
+
+  <!-- Tipografías (si no hay internet, se usan las fuentes del sistema) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       FONDO: luz cálida, degradados y capa de parallax muy ligero
+       ============================================================ -->
+  <div class="fondo" aria-hidden="true">
+    <div class="fondo__luz fondo__luz--a" data-parallax="0.018"></div>
+    <div class="fondo__luz fondo__luz--b" data-parallax="-0.012"></div>
+    <div class="fondo__grano"></div>
+  </div>
+
+  <!-- Capas donde JavaScript inyecta partículas y corazones -->
+  <div class="capa-particulas" id="capaParticulas" aria-hidden="true"></div>
+
+  <!-- Destello de transición entre pantallas -->
+  <div class="destello-transicion" id="destelloTransicion" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       CONTROL DE MÚSICA
+       ============================================================ -->
+  <button class="musica" id="botonMusica" type="button" hidden
+          aria-pressed="false" aria-label="Reproducir o pausar la música">
+    <span class="musica__ondas" aria-hidden="true">
+      <i></i><i></i><i></i><i></i>
+    </span>
+    <span class="musica__texto" id="musicaTexto">Música</span>
+  </button>
+
+  <audio id="audio" loop preload="none" playsinline>
+    <!-- Coloca tu canción en: assets/musica/cancion.mp3 -->
+    <source src="assets/musica/cancion.mp3" type="audio/mpeg">
+  </audio>
+
+  <main class="escena" id="escena">
+
+    <!-- ==========================================================
+         1. PANTALLA DE INICIO
+         ========================================================== -->
+    <section class="pantalla pantalla--inicio activa visible" id="pantallaInicio">
+      <div class="pantalla__interior">
+
+        <div class="ramo-inicial" id="ramoInicial" aria-hidden="true"></div>
+
+        <p class="susurro" data-aparece="1">Para ti mi Judi…</p>
+        <h1 class="titulo" data-aparece="2">Te amo con todo mi corazón</h1>
+        <p class="pie" data-aparece="3">Tómate un minuto. Y sube el volumen si puedes.</p>
+
+        <button class="boton boton--principal" id="botonAbrir" type="button" data-aparece="4">
+          <span>Abrir</span>
+          <span class="boton__corazon" aria-hidden="true">💛</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         2. PANTALLA DE MENSAJE
+         ========================================================== -->
+    <section class="pantalla pantalla--mensaje" id="pantallaMensaje">
+      <div class="pantalla__interior">
+        <p class="susurro" data-aparece="1">Espero sorprenderte…</p>
+
+        <div class="tarjeta">
+          <p class="tarjeta__eco" data-aparece="2">Porque esto es solo para ti</p>
+          <p class="parrafo parrafo--destacado" data-aparece="3">
+            Ya que no hay palabra ni detalle para describir
+            todo lo que siento por ti mi amor.
+          </p>
+          <p class="parrafo" data-aparece="4">
+            Eres el porqué de todas mis razones.
+          </p>
+          <span class="tarjeta__flor" aria-hidden="true"></span>
+        </div>
+
+        <button class="boton" id="botonContinuar" type="button" data-aparece="5">
+          <span>Continuar</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         3. SECCIÓN DE RECUERDOS (una foto por vez)
+         ========================================================== -->
+    <section class="pantalla pantalla--recuerdos" id="pantallaRecuerdos">
+      <div class="pantalla__interior">
+
+        <div class="progreso" id="progreso" aria-hidden="true"></div>
+
+        <figure class="recuerdo" id="recuerdo">
+          <div class="recuerdo__marco">
+            <img class="recuerdo__foto" id="recuerdoFoto" src="" alt="">
+            <div class="recuerdo__vacio" id="recuerdoVacio" hidden>
+              <span aria-hidden="true">🌼</span>
+              <p>Coloca tu foto en<br><code>assets/fotos/</code></p>
+            </div>
+          </div>
+          <figcaption class="recuerdo__texto" id="recuerdoTexto"></figcaption>
+        </figure>
+
+        <button class="boton" id="botonSeguir" type="button">
+          <span id="botonSeguirTexto">Seguir</span>
+          <span class="boton__corazon" aria-hidden="true">💛</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         4. PANTALLA FINAL + RAMO ANIMADO
+         ========================================================== -->
+    <section class="pantalla pantalla--final" id="pantallaFinal">
+      <div class="pantalla__interior pantalla__interior--final">
+
+        <p class="susurro" id="finalSusurro">Y ahora sí…</p>
+        <h2 class="titulo titulo--final" id="finalTitulo">Tengo algo más que decirte</h2>
+
+        <div class="tarjeta tarjeta--final" id="finalTarjeta">
+          <p class="parrafo">
+            No preparé todo esto solo por las flores amarillas.
+          </p>
+          <p class="parrafo">
+            Lo hice porque quería encontrar una manera distinta de decirte
+            lo mucho que importas, y que no hay día que no enamore perdidamente de ti mi princesa.
+          </p>
+          <p class="parrafo">
+            Gracias por las conversaciones largas, por las risas a destiempo
+            y por cada recuerdo que ya no sabría devolver.
+          </p>
+          <p class="parrafo parrafo--destacado">
+            Ojalá esto te saque la misma sonrisa que tú me sacas a mí.
+          </p>
+        </div>
+
+        <!-- Contador opcional (se oculta solo si no hay fecha configurada) -->
+        <p class="contador" id="contador" hidden></p>
+
+        <!-- Ramo final generado con JavaScript -->
+        <div class="ramo-final" id="ramoFinal" role="img"
+             aria-label="Un ramo de flores amarillas animado"></div>
+
+        <p class="cierre" id="cierre">
+          <span class="cierre__linea">Feliz día de las flores amarillas</span>
+          <span class="cierre__corazon" aria-hidden="true">💛</span>
+        </p>
+
+        <button class="boton boton--fantasma" id="botonRepetir" type="button">
+          <span>Verlo otra vez</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
